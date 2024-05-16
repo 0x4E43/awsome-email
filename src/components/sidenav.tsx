@@ -15,7 +15,9 @@ export default function SideNav() {
         <div className="text-center p-5 my-10 ml-5">
           <div className="flex items-center">
             <MdEmail className="text-2xl" />
-            <h1 className="text-xl mx-2">Awesome Email</h1>
+            <Link to={"/"} className="text-xl mx-2">
+              Awesome Email
+            </Link>
           </div>
           <div className="mt-20">
             <div className="flex items-center">
