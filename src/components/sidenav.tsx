@@ -1,3 +1,4 @@
+import { HiMiniUsers } from "react-icons/hi2";
 import {
   MdAddComment,
   MdEmail,
@@ -28,15 +29,27 @@ export default function SideNav() {
             </div>
             <div className="flex items-center mt-5">
               <MdOutlineSettingsSuggest className="text-xl" />
-              <h1 className="mx-2">Add Email Config</h1>
+              <Link to={"/add-config"} className="mx-2">
+                Add Email Config
+              </Link>
             </div>
             <div className="flex items-center mt-5">
               <MdAddComment className="text-xl" />
-              <h1 className="mx-2">Add Email Template</h1>
+              <Link to={"/add-template"} className="mx-2">
+                Add Email Template
+              </Link>
             </div>
             <div className="flex items-center mt-5">
               <MdNotes className="text-xl" />
-              <h1 className="mx-2">Email Logs</h1>
+              <Link to={"/view-logs"} className="mx-2">
+                View Logs
+              </Link>
+            </div>
+            <div className="flex items-center mt-5">
+              <HiMiniUsers className="text-xl" />
+              <Link to={"/manage-users"} className="mx-2">
+                Manage Users
+              </Link>
             </div>
           </div>
         </div>
