@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 export default function SideNav() {
   return (
     <>
-      <div className="h-full w-[250px] bg-background-deep text-text-light text-center flex flex-col justify-between">
+      <div className="h-full w-[250px] bg-background-deep text-light text-center flex flex-col justify-between">
         <div className="text-center p-5 my-10 ml-5">
           <div className="flex items-center">
             <MdEmail className="text-2xl" />

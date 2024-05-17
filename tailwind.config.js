@@ -4,7 +4,8 @@ export default {
   theme: {
     colors: {
       "background-deep": "#344C64",
-      "text-light": "#FFF",
+      light: "#FFF",
+      red: "#FF0000",
     },
     fontFamily: {
       sans: ["Helvetica", "Arial", "sans-serif"],
