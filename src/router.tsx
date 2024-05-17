@@ -1,6 +1,6 @@
 import { RouteObject } from "react-router-dom";
 import SendEmail from "./pages/sendEmail.tsx";
-import LoginPage from "./pages/loginPaget.tsx";
+import LoginPage from "./pages/loginPage.tsx";
 import AddConfig from "./pages/addConfig.tsx";
 import AddTemplate from "./pages/addTemplate.tsx";
 import ErrorPage from "./pages/error.tsx";

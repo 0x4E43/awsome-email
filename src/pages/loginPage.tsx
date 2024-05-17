@@ -1,9 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
+import { LoginUser } from "../services/apiService";
+import { showAlert } from "tailwind-toastify";
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
-
+  const [error, setError] = useState(false);
   function handleEmail(e: ChangeEvent<HTMLInputElement>) {
     setEmail(e.target.value);
   }
@@ -11,15 +14,31 @@ export default function LoginPage() {
   function handlePassword(e: ChangeEvent<HTMLInputElement>) {
     setPass(e.target.value);
   }
+
   function handleLoginSubmit(e: FormEvent) {
     e.preventDefault(); // Prevent the default form submission behavior
     if (email === "" || pass === "") {
       console.log("Empty");
     }
     console.log("email : ", email, " passw: " + pass);
+    LoginUser(email, pass)
+      .then((loggedIn) => {
+        if (!loggedIn) {
+          showAlert("error", "Errror", "Login Failed");
+          setError(true); // Set error message if login failed
+        } else {
+          console.log("YAY");
+          // Login successful, navigate to dashboard or perform other actions
+        }
+      })
+      .catch((error) => {
+        setError(true); // Set error message if an error occurred
+        console.error("Login error:", error);
+      });
   }
   return (
     <>
+      {error && showAlert("error", "Errror", "Login Failed")}
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">

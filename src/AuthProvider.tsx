@@ -1,4 +1,4 @@
-import LoginPage from "./pages/loginPaget";
+import LoginPage from "./pages/loginPage";
 
 const useAuth = () => {
   const isAuthenticated: boolean = !!localStorage.getItem("token");
