@@ -1,25 +1,22 @@
-
-type APIResponse = {
+export type APIResponse = {
   message: string;
   status: number;
   data?: never[];
 };
-type User = {
+export type User = {
   id: number;
   emailId?: string;
   password?: string;
   created_at?: Date;
 };
+type Auth = {
+  token?: string;
+};
 
 const ROOT_URL = "http://localhost:1323";
 
-export async function LoginUser(email: string, pass: string): Promise<boolean> {
+export async function LoginUser(user: User): Promise<string | null> {
   try {
-    const user: User = {
-      id: 0,
-      emailId: email,
-      password: pass,
-    };
     const res = await fetch(ROOT_URL + "/user/login", {
       method: "POST",
       headers: {
@@ -32,16 +29,21 @@ export async function LoginUser(email: string, pass: string): Promise<boolean> {
     const apiResponse: APIResponse = await res.json();
     if (apiResponse.status !== 200) {
       console.log("res: ", apiResponse);
-      return false;
+      return null;
     }
     console.log("API Res", apiResponse);
-    if (apiResponse.data != undefined) {
-      console.log("token", apiResponse.data);
+    if (apiResponse.data) {
+      const auth: Auth = apiResponse.data as Auth;
+      console.log("token", auth?.token);
+      if (auth.token !== undefined) {
+        // window.localStorage.setItem("token", auth.token);
+        return authToken;
+      }
     }
-    return true;
+    return null;
   } catch (error) {
     console.log("Error: ", error);
-    return false;
+    return null;
   }
 }
 const authToken = window.localStorage.getItem("token");

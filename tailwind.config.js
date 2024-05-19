@@ -6,6 +6,8 @@ export default {
       "background-deep": "#344C64",
       light: "#FFF",
       red: "#FF0000",
+      blue: "#0096FF",
+      primary: "#0096FF",
     },
     fontFamily: {
       sans: ["Helvetica", "Arial", "sans-serif"],
