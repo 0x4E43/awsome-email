@@ -76,9 +76,11 @@ export default function SendEmail() {
     );
   }
   return (
-    <div className="w-full flex h-screen">
+    <div className="fixed w-full flex h-screen">
+      <div></div>
       <SideNav />
-      <div className="flex-1 font-sans ml-5 mt-5">
+
+      <div className="flex-1 font-sans ml-5 mt-5 overflow-y-auto">
         <h1 className="text-2xl ml-10 mt-10 text-light">Send Bulk Emails</h1>
         <form action="" className="p-10 space-y-5" onSubmit={onSubmitHandler}>
           <div className="form-control w-full max-w-xl">
