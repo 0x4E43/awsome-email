@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import SideNav from "../components/sidenav";
 import { GetAllUserData } from "../services/apiService";
 import { AiOutlineDelete } from "react-icons/ai";
+import { HiOutlinePlusCircle } from "react-icons/hi2";
+import AddUserModal from "../components/addUserModal";
 
 type Users = {
   id: number;
   emailId?: string;
   created_at?: Date;
+  userType?: number;
 };
 
 export default function ManageUsers() {
@@ -39,12 +42,33 @@ export default function ManageUsers() {
         <h1 className="text-2xl ml-10 mt-10 text-light">Manage Users</h1>
 
         <div className="overflow-x-auto m-10">
+          <div className="flex justify-end mb-4 mr-16">
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                const modal = document.getElementById(
+                  "user_modal"
+                ) as HTMLDialogElement;
+                if (modal !== null) {
+                  modal.showModal();
+                }
+              }}
+            >
+              <HiOutlinePlusCircle />
+              Add User
+            </button>
+          </div>
+
+          <div>
+            <AddUserModal />
+          </div>
           <table className="table">
             {/* head */}
             <thead>
               <tr>
                 <th></th>
                 <th>Email</th>
+                <th>User Type</th>
                 <th>Created Date</th>
                 <th></th>
               </tr>
@@ -54,13 +78,30 @@ export default function ManageUsers() {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{user.emailId}</td>
+                  <td>
+                    {user.userType == 1 ? (
+                      <b className="text-blue">ADMIN</b>
+                    ) : (
+                      <b>TEST</b>
+                    )}
+                  </td>
                   {/* Assuming user has job and favoriteColor properties */}
                   <td>{user.created_at?.toString()}</td>
                   <td
-                    style={{ cursor: "pointer" }}
-                    onClick={() => deleteUser(user.id)}
+                    style={{
+                      cursor: user.id === 1 ? "not-allowed" : "pointer",
+                    }}
+                    onClick={
+                      user.id === 1 ? undefined : () => deleteUser(user.id)
+                    }
                   >
-                    <AiOutlineDelete className="text-red text-xl" />
+                    <AiOutlineDelete
+                      className={
+                        user.id === 1
+                          ? "text-gray-400 text-xl"
+                          : "text-red text-xl"
+                      }
+                    />
                   </td>
                 </tr>
               ))}
